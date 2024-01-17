@@ -13,9 +13,8 @@ namespace XamarinApp.Views
         public TasksPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new TasksViewModel(); 
+            BindingContext = _viewModel = new TasksViewModel();
         }
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();

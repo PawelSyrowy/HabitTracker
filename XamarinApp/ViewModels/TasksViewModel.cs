@@ -19,6 +19,8 @@ namespace XamarinApp.ViewModels
             AddTaskCommand = new Command(OnAddTask);
             TaskTapped = new Command<TaskModel>(OnTaskTapped);
             DeleteCommand = new Command<TaskModel>(OnTaskDelete);
+            IsCompletedCommand = new Command<TaskModel>(OnToggleIsCompleted);
+
         }
         private TaskModel _selectedTask; 
         public void OnAppearing()
@@ -38,7 +40,7 @@ namespace XamarinApp.ViewModels
 
         public ObservableCollection<TaskModel> Tasks { get; }
         public Command LoadTasksCommand { get; }
-        async Task ExecuteLoadTasksCommand()
+        public async Task ExecuteLoadTasksCommand()
         {
             IsBusy = true;
 
@@ -95,6 +97,26 @@ namespace XamarinApp.ViewModels
                 Debug.WriteLine("Failed to Delete Task");
             }
         }
+        public Command<TaskModel> IsCompletedCommand { get; }
+        private async void OnToggleIsCompleted(TaskModel task)
+        {
+            if (SelectedTask == null)
+                return;
+
+            try
+            {
+                task.IsCompleted = !task.IsCompleted;
+                DataStoreTasks.UpdateItemAsync(task);
+
+                Tasks.Clear();
+                await ExecuteLoadTasksCommand();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to toggle completion status: {ex.Message}");
+            }
+        }
+
 
     }
 }
