@@ -18,6 +18,7 @@ namespace XamarinApp.ViewModels
             LoadTasksCommand = new Command(async () => await ExecuteLoadTasksCommand());
             AddTaskCommand = new Command(OnAddTask);
             TaskTapped = new Command<TaskModel>(OnTaskTapped);
+            DeleteCommand = new Command<TaskModel>(OnTaskDelete);
         }
         private TaskModel _selectedTask; 
         public void OnAppearing()
@@ -45,17 +46,11 @@ namespace XamarinApp.ViewModels
             {
                 Tasks.Clear();
                 var items = await DataStoreTasks.GetItemsAsync(true);
-                //TaskDatabase database = await TaskDatabase.Instance;
-                //var moreItems = await database.GetItemsAsync();
 
                 foreach (var item in items.OrderBy(task => task.CreatedOn))
                 {
                     Tasks.Add(item);
                 }
-                //foreach (var item in moreItems.OrderBy(task => task.CreatedOn))
-                //{
-                //    Tasks.Add(item);
-                //}
             }
             catch (Exception ex)
             {
@@ -81,5 +76,25 @@ namespace XamarinApp.ViewModels
 
             await Shell.Current.GoToAsync($"{nameof(TaskDetailPage)}?{nameof(TaskDetailViewModel.TaskId)}={task.Id}");
         }
+        public Command<TaskModel> DeleteCommand { get; }
+        private async void OnTaskDelete(TaskModel task)
+        {
+            if (task == null)
+                return;
+
+            try
+            {
+                await DataStoreTasks.DeleteItemAsync(task.Id);
+
+                Tasks.Clear();
+                await ExecuteLoadTasksCommand();
+
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Delete Task");
+            }
+        }
+
     }
 }

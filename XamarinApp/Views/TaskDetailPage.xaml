@@ -24,8 +24,9 @@
             <Switch IsToggled="{Binding IsCompleted}" Toggled="OnToggleIsCompleted" Grid.Row="2" Grid.Column="1" />
         </Grid>
         <DatePicker Date="{Binding CompleteUntil, Mode=TwoWay}" DateSelected ="OnCompleteUntilChanged"/>
+        <Entry Text="{Binding Notes, Mode=TwoWay}" TextChanged="OnNotesChanged"  FontSize="Medium" />
+
         <Button Text="Set Category" BackgroundColor="Yellow" TextColor="Black"/>
-        <Button Text="Add Notes" BackgroundColor="Yellow" TextColor="Black"/>
         <Button Text="Share" BackgroundColor="Yellow" TextColor="Black"/>
         <Button Text="Delete" Command="{Binding DeleteTaskCommand}" BackgroundColor="Red"/>
     </StackLayout>

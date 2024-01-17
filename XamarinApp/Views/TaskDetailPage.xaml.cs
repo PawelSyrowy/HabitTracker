@@ -38,5 +38,12 @@ namespace XamarinApp.Views
                 viewModel.OnCompleteUntilChanged(e.NewDate);
             }
         }
+        private void OnNotesChanged(object sennder, TextChangedEventArgs e)
+        {
+            if (BindingContext is TaskDetailViewModel viewModel)
+            {
+                viewModel.OnNotesChanged(e.NewTextValue);
+            }
+        }
     }
 }

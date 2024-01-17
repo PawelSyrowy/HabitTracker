@@ -37,6 +37,7 @@ namespace XamarinApp.ViewModels
                 Completed = task.IsCompleted ? "Completed" : "Pending";
                 CompleteUntil = task.CompleteUntil;
                 Text = task.Text;
+                Notes = task.Notes;
             }
             catch (Exception)
             {
@@ -51,13 +52,20 @@ namespace XamarinApp.ViewModels
             set => SetProperty(ref text, value);
         }
 
+        private string notes;
+        public string Notes
+        {
+            get => notes;
+            set => SetProperty(ref notes, value);
+        }
+
         private string priority;
+        private bool isPriority;
         public string Priority
         {
             get => priority;
             set => SetProperty(ref priority, value);
         }
-        private bool isPriority;
         public bool IsPriority
         {
             get => isPriority;
@@ -65,12 +73,12 @@ namespace XamarinApp.ViewModels
         }
         
         private string completed;
+        private bool isCompleted;
         public string Completed
         {
             get => completed;
             set => SetProperty(ref completed, value);
         }
-        private bool isCompleted;
         public bool IsCompleted
         {
             get => isCompleted;
@@ -158,6 +166,12 @@ namespace XamarinApp.ViewModels
             {
                 Debug.WriteLine("Failed to change Title");
             }
+        }
+        public async void OnNotesChanged(string newNote)
+        {
+            var task = await DataStoreTasks.GetItemAsync(taskId);
+            task.Notes = Notes;
+            await DataStoreTasks.UpdateItemAsync(task);
         }
 
         public async void OnCompleteUntilChanged(DateTime newDate)

@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
+using XamarinApp.Models;
+using XamarinApp.Services;
 using XamarinApp.ViewModels;
 
 namespace XamarinApp.Views

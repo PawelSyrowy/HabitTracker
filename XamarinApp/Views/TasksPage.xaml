@@ -21,6 +21,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <Label Text="{Binding Text}" 
@@ -44,7 +45,10 @@
                         </Label>
 
                         <Switch Grid.Column="1" />
-                        <!-- Add Switch in the second column -->
+                        <Button Text="Delete" 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:TasksViewModel}}, Path=DeleteCommand}" 
+                                CommandParameter="{Binding .}"
+                                Grid.Column="2" />
 
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
