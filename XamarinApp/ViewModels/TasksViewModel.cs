@@ -46,8 +46,8 @@ namespace XamarinApp.ViewModels
 
             try
             {
-                Tasks.Clear();
                 var items = await DataStoreTasks.GetItemsAsync(true);
+                Tasks.Clear();
 
                 foreach (var item in items.OrderBy(task => task.CreatedOn))
                 {
@@ -100,14 +100,12 @@ namespace XamarinApp.ViewModels
         public Command<TaskModel> IsCompletedCommand { get; }
         private async void OnToggleIsCompleted(TaskModel task)
         {
-            if (SelectedTask == null)
+            if (task == null)
                 return;
 
             try
             {
-                task.IsCompleted = !task.IsCompleted;
-                DataStoreTasks.UpdateItemAsync(task);
-
+                await DataStoreTasks.UpdateItemAsync(task);
                 Tasks.Clear();
                 await ExecuteLoadTasksCommand();
             }

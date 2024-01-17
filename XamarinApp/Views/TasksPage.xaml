@@ -45,15 +45,29 @@
                             </Label.Triggers>
                         </Label>
 
-                        <Button Text="Complete"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:TasksViewModel}}, Path=OnToggleIsCompletedCommand}"
-                            CommandParameter="{Binding .}"
-                            Grid.Column="1" />
+                        <local:CommandSwitch
+                                IsToggled="{Binding IsCompleted}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:TasksViewModel}}, Path=IsCompletedCommand}"
+                                CommandParameter="{Binding .}"
+                                Grid.Column="1">
+                            <local:CommandSwitch.Style>
+                                <Style TargetType="local:CommandSwitch">
+                                    <Style.Triggers>
+                                        <Trigger TargetType="local:CommandSwitch" Property="IsToggled" Value="True">
+                                            <Setter Property="ThumbColor" Value="Green" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </local:CommandSwitch.Style>
+                        </local:CommandSwitch>
+
+
 
                         <Button Text="Delete" 
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:TasksViewModel}}, Path=DeleteCommand}" 
                                 CommandParameter="{Binding .}"
-                                Grid.Column="2" />
+                                Grid.Column="2" 
+                                Background="black"/>
 
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
