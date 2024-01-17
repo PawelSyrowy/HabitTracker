@@ -920,11 +920,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pawel\\Documents\\Repos\\XamarinApp\\XamarinApp\\XamarinApp.csproj",
+      "projectUniqueName": "C:\\Users\\pawel\\Documents\\Repos\\HabitTracker\\XamarinApp\\XamarinApp.csproj",
       "projectName": "XamarinApp",
-      "projectPath": "C:\\Users\\pawel\\Documents\\Repos\\XamarinApp\\XamarinApp\\XamarinApp.csproj",
+      "projectPath": "C:\\Users\\pawel\\Documents\\Repos\\HabitTracker\\XamarinApp\\XamarinApp.csproj",
       "packagesPath": "C:\\Users\\pawel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pawel\\Documents\\Repos\\XamarinApp\\XamarinApp\\obj\\",
+      "outputPath": "C:\\Users\\pawel\\Documents\\Repos\\HabitTracker\\XamarinApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

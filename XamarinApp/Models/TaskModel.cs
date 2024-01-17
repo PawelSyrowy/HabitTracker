@@ -13,6 +13,7 @@ namespace XamarinApp.Models
         public DateTime ? CompletedOn { get; set; }
         public bool IsCompleted { get; set; }
         public bool IsPriority { get; set; }
+        public string Notes { get; set; }
 
         public TaskModel(int id, string text, DateTime completeUntil, bool isPriority = false)
         {
@@ -23,6 +24,7 @@ namespace XamarinApp.Models
             CompletedOn = null;
             IsCompleted = false;
             IsPriority = isPriority;
+            Notes = "";
         }
         public TaskModel()
         {

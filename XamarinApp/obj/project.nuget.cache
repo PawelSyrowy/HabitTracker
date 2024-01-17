@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QRtpDt1hWEREKfmWB6sKt6pg9C55gDoj6pioLA7mSKTZKUJo1tdwLWSZq/JbHaiUb5kYnvIGaQ7l78jKYfOsOw==",
+  "dgSpecHash": "dNdYrQ7dh+iR1/h9kNrEFrMotiNi6P4aIYBMtAi8lEcFNB428ChHafE6Vj1+//Ox4MhexLuWup3KDEBku0tVhA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pawel\\Documents\\Repos\\XamarinApp\\XamarinApp\\XamarinApp.csproj",
+  "projectFilePath": "C:\\Users\\pawel\\Documents\\Repos\\HabitTracker\\XamarinApp\\XamarinApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pawel\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\pawel\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
