@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApp.Views.MainPage"
+             xmlns:vm="clr-namespace:XamarinApp.ViewModels"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="46" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="IsReadOnly" Value="True" />
+            </Style>
+
+            <Style x:Key="BaseButton" TargetType="Button">
+                <Setter Property="FontSize" Value="Body" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+
+            <Style TargetType="Button" BasedOn="{StaticResource BaseButton}">
+                
+            </Style>
+
+            <Style x:Key="BtnNumber" TargetType="Button">
+                <Setter Property="Background" Value="#29AF29" />
+            </Style>
+            <Style x:Key="BtnOperation" TargetType="Button">
+                <Setter Property="Background" Value="#FF787878" />
+            </Style>
+            <Style x:Key="BtnClear" TargetType="Button">
+                <Setter Property="Background" Value="#FFE64848" />
+            </Style>
+            <Style x:Key="BtnResult" TargetType="Button">
+                <Setter Property="Background" Value="#FF0D37E3" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <Entry Grid.ColumnSpan="5" Text="{Binding ScreenVal}"/>
+
+        <Button Grid.Row="1" Grid.Column="0" Text="7" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="7"/>
+        <Button Grid.Row="1" Grid.Column="1" Text="8" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="8"/>
+        <Button Grid.Row="1" Grid.Column="2" Text="9" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="9"/>
+        <Button Grid.Row="2" Grid.Column="0" Text="4" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="7"/>
+        <Button Grid.Row="2" Grid.Column="1" Text="5" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="4"/>
+        <Button Grid.Row="2" Grid.Column="2" Text="6" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="5"/>
+        <Button Grid.Row="3" Grid.Column="0" Text="1" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="6"/>
+        <Button Grid.Row="3" Grid.Column="1" Text="2" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="2"/>
+        <Button Grid.Row="3" Grid.Column="2" Text="3" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="3"/>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="0" Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter="0"/>
+        <Button Grid.Row="4" Grid.Column="2" Text="," Style="{StaticResource BtnNumber}" Command="{Binding AddNumberCommand}" CommandParameter=","/>
+        <Button Grid.Row="1" Grid.Column="3" Text="/" Style="{StaticResource BtnOperation}" Command="{Binding AddOperationCommand}" CommandParameter="/"/>
+        <Button Grid.Row="2" Grid.Column="3" Text="-" Style="{StaticResource BtnOperation}" Command="{Binding AddOperationCommand}" CommandParameter="-"/>
+        <Button Grid.Row="3" Grid.Column="3" Text="*" Style="{StaticResource BtnOperation}" Command="{Binding AddOperationCommand}" CommandParameter="*"/>
+        <Button Grid.Row="4" Grid.Column="3" Text="C" Style="{StaticResource BtnClear}" Command="{Binding ClearScreenCommand}"/>
+        <Button Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Text="+" Style="{StaticResource BtnOperation}" Command="{Binding AddOperationCommand}" CommandParameter="+"/>
+        <Button Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Text="=" Style="{StaticResource BtnResult}" Command="{Binding GetResultCommand}"/>
+
+    </Grid>
+
+</ContentPage>

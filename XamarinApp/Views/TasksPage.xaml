@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApp.Views.TasksPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:XamarinApp.ViewModels"  
+             xmlns:model="clr-namespace:XamarinApp.Models"  
+             x:Name="BrowseTasksPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddTaskCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <RefreshView x:DataType="local:TasksViewModel" Command="{Binding LoadTasksCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="TasksListView"
+                        ItemsSource="{Binding Tasks}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" x:DataType="model:TaskModel">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding Text}" 
+                               LineBreakMode="NoWrap" 
+                               Style="{DynamicResource ListTaskTextStyle}" 
+                               FontSize="16">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsPriority}" Value="False">
+                                    <Setter Property="TextColor" Value="Black" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}" Value="False">
+                                    <Setter Property="TextColor" Value="Black" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsPriority}" Value="True">
+                                    <Setter Property="TextColor" Value="Red" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}" Value="True">
+                                    <Setter Property="TextColor" Value="Green" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+
+                        <Switch Grid.Column="1" />
+                        <!-- Add Switch in the second column -->
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:TasksViewModel}}, Path=TaskTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
